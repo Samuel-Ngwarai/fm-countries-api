@@ -24,7 +24,7 @@ export class Countries {
 
     data.forEach((rawCountryData) => {
       let country: Country = {} as Country;
-      const commonName = rawCountryData.name.common;
+      const commonName: string = rawCountryData.name.common;
       country.commonName = commonName;
       newCountries.ccaToName[rawCountryData.cca3] = commonName;
 
@@ -35,7 +35,7 @@ export class Countries {
       country.population = rawCountryData.population;
 
       country.region = rawCountryData.region;
-      country.subRegion = rawCountryData.subRegion;
+      country.subRegion = rawCountryData.subregion;
       country.capital = rawCountryData.capital;
       country.topLevelDomain = rawCountryData.tld;
 
@@ -47,7 +47,7 @@ export class Countries {
 
       country.flag = rawCountryData.flags.svg;
 
-      newCountries.countries[commonName] = country;
+      newCountries.countries[commonName.toLowerCase()] = country;
     });
 
     return newCountries;

@@ -4,6 +4,13 @@ import { defineNuxtConfig } from "nuxt";
 export default defineNuxtConfig({
   buildModules: ['@pinia/nuxt'],
   css: ["~/assets/css/tailwind.css"],
+  app: {
+    head: {
+      link: [
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap' }
+      ]
+    },
+  },
   build: {
     postcss: {
       postcssOptions: {
