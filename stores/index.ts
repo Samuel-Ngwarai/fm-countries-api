@@ -1,4 +1,6 @@
 import { defineStore } from "pinia";
+import axios from "axios";
+import { Countries } from "../entities/countries";
 
 export const useCountriesStore = defineStore({
   id: "countries-store",
@@ -10,14 +12,15 @@ export const useCountriesStore = defineStore({
     };
   },
   actions: {
-    setCountryDataExists() {
-      this.countryDataExists = true;
-    },
-    setCountriesData(newData) {
-      this.countries = newData;
-    },
-    setCcaToName(newData) {
-      this.ccaToName = newData;
+    async setCountriesData() {
+      if (!this.countryDataExists) {
+        this.countryDataExists = true;
+        const countriesRawData = await axios.get('https://restcountries.com/v3.1/all');
+        const countries = Countries.createCountries(countriesRawData.data);
+        
+        this.countries = countries.countries;
+        this.ccaToName = countries.ccaToName;
+      }
     },
   },
   getters: {
