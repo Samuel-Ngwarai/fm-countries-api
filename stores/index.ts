@@ -9,6 +9,7 @@ export const useCountriesStore = defineStore({
       countries: {},
       ccaToName: {},
       countryDataExists: false,
+      regions: []
     };
   },
   actions: {
@@ -20,6 +21,7 @@ export const useCountriesStore = defineStore({
         
         this.countries = countries.countries;
         this.ccaToName = countries.ccaToName;
+        this.regions = countries.regions;
       }
     },
   },
@@ -27,5 +29,6 @@ export const useCountriesStore = defineStore({
     getCountries: (state) => state.countries,
     getCcaToName: (state) => state.ccaToName,
     getCountryDataExists: (state) => state.countryDataExists,
+    getRegions: (state) => state.regions,
   },
 });
