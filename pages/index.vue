@@ -49,7 +49,7 @@ const rawCountriesData = Object.values(
   countriesStore.getCountries
 ) as Country[];
 
-const regions = countriesStore.getRegions;
+const regions = countriesStore.getRegions.sort();
 
 const countriesData = computed(() => {
   let countryData = rawCountriesData;
