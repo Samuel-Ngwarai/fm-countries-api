@@ -1,7 +1,7 @@
 <template>
-  <div class="text-white bg-dark-blue max-w-[215px]">
-    <NuxtLink :to="`countries/${countryName}`">
-      <div class="h-[150px] bg-no-repeat bg-contain" :style="countryFlag"></div>
+  <div class="text-white bg-dark-blue">
+    <NuxtLink :to="`countries/${countryName}`" class="grid grid-rows-countryCard">
+      <div class="bg-no-repeat bg-contain" :style="countryFlag"></div>
       <div class="px-4 pb-4 leading-6 text-[14px]">
         <h2 class="text-2xl my-4 font-semibold">{{ countryName }}</h2>
         <p>Population: {{ population }}</p>

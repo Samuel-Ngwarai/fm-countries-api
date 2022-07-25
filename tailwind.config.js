@@ -18,6 +18,9 @@ module.exports = {
         'dark-gray': 'hsl(0, 0%, 52%)',
         'very-light-gray': 'hsl(0, 0%, 98%)',
         'white': 'hsl(0, 0%, 100%)',
+      },
+      gridTemplateRows: {
+        countryCard: '6fr 4fr'
       }
     },
   },

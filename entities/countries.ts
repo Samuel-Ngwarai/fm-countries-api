@@ -16,6 +16,7 @@ export type Country = {
 export class Countries {
   public countries: { [key: string]: Country } = {};
   public ccaToName: { [key: string]: string } = {};
+  public regions: string[] = [];
 
   constructor() {}
 
@@ -35,6 +36,8 @@ export class Countries {
       country.population = rawCountryData.population;
 
       country.region = rawCountryData.region;
+      if (newCountries.regions.indexOf(country.region) === -1) newCountries.regions.push(country.region);
+
       country.subRegion = rawCountryData.subregion;
       country.capital = rawCountryData.capital;
       country.topLevelDomain = rawCountryData.tld;
