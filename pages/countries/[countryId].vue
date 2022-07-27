@@ -1,17 +1,17 @@
 <template>
-  <div class="text-white px-16">
+  <div class="text-white px-8 md:px-16">
     <div class="h-36 flex items-center">
       <basic-button @click="router.back()">BackIcon Back</basic-button>
     </div>
 
-    <div class="grid grid-cols-2 gap-10 h-[500px]">
+    <div class="md:grid md:grid-cols-2 md:gap-10">
       <div
-        class="h-full bg-no-repeat bg-contain bg-center"
+        class="h-[250px] md:h-full bg-no-repeat bg-contain md:bg-center"
         :style="countryFlag"
       ></div>
-      <div class="p-10">
+      <div class="py-10 md:p-10">
         <h1 class="text-3xl font-bold pb-6">{{ countryData.commonName }}</h1>
-        <div class="grid grid-cols-2 gap-10 pb-16 text-[16px]">
+        <div class="grid md:grid-cols-2 gap-10 pb-16 text-[16px] leading-6">
           <div>
             <p class="font-thin">
               <span class="font-semibold ">Native Name:</span>
@@ -31,21 +31,21 @@
             </p>
             <p>
               <span class="font-semibold">Capital:</span>
-              {{ countryData.capital.join(", ") }}
+              {{ countryData.capital?.join(", ") }}
             </p>
           </div>
           <div>
             <p>
               <span class="font-semibold">Top Level Domian:</span>
-              {{ countryData.topLevelDomain.join(", ") }}
+              {{ countryData.topLevelDomain?.join(", ") }}
             </p>
             <p>
               <span class="font-semibold">Currencies:</span>
-              {{ countryData.currencies.join(", ") }}
+              {{ countryData.currencies?.join(", ") }}
             </p>
             <p>
               <span class="font-semibold">Languages:</span>
-              {{ countryData.languages.join(", ") }}
+              {{ countryData.languages?.join(", ") }}
             </p>
           </div>
         </div>
@@ -71,16 +71,17 @@ import { useCountriesStore } from "../../stores";
 import { Country } from "../../entities/countries";
 
 const countriesStore = useCountriesStore();
-// a computed ref
+
+
+if (!countriesStore.getCountryDataExists) {
+  await countriesStore.setCountriesData();
+}
+
 const countryFlag = computed(() => {
   return {
     'background-image': `url(${countryData.flag})`,
   }
 })
-
-if (!countriesStore.getCountryDataExists) {
-  await countriesStore.setCountriesData();
-}
 
 const route = useRoute();
 const router = useRouter();
