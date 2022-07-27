@@ -1,17 +1,18 @@
 <template>
   <div>
-    <div class="bg-very-dark-blue-dm px-8 md:px-16">
-      <div class="text-white grid grid-rows-2 gap-12 md:flex md:items-center py-12">
+    <div class="px-8 md:px-16">
+      <div class="grid grid-rows-2 gap-12 md:flex md:items-center py-12">
         <div class="flex items-center rounded-md">
           <input
             v-model="searchInput"
-            class="appearance-none bg-dark-blue h-14 w-full md:w-[300px] block p-4 pl-10 text-sm text-white border border-very-dark-blue-dm focus:ring-blue-500 focus:border-blue-500 outline-none"
+            class="appearance-none h-14 w-full md:w-[300px] block p-4 pl-10 text-sm border shadow-md focus:ring-blue-500 focus:border-blue-500 outline-none"
+            :class="inputColors"
             type="search"
             placeholder="Search for a country..."
           />
         </div>
-        <div class="ml-auto">
-          <select class="appearance-none bg-dark-blue px-6 py-4 focus:bg-dark-blue" v-model="selectedRegion">
+        <div class="ml-auto shadow-md">
+          <select class="appearance-none px-6 py-4" :class="filterColors" v-model="selectedRegion">
             <option disabled value="">Filter by Region</option>
             <option v-for="region in regions">{{ region }}</option>
           </select>
@@ -37,6 +38,21 @@ import { useCountriesStore } from "../stores";
 import { Country } from "../entities/countries";
 
 const countriesStore = useCountriesStore();
+
+const darkMode = computed(() => {
+  return countriesStore.getDarkMode;
+});
+
+const inputColors = computed(() => ({
+  'bg-dark-blue text-white': darkMode.value,
+  'bg-white text-dark-gray': !darkMode.value,
+}));
+
+const filterColors = computed(() => ({
+  'bg-dark-blue text-white focus:bg-dark-blue': darkMode.value,
+  'bg-white text-very-dark-blue-lm': !darkMode.value,
+}));
+
 
 if (!countriesStore.getCountryDataExists) {
   await countriesStore.setCountriesData();

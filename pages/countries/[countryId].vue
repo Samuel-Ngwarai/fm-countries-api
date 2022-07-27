@@ -1,12 +1,12 @@
 <template>
-  <div class="text-white px-8 md:px-16">
+  <div class="px-8 md:px-16" :class="textColors">
     <div class="h-36 flex items-center">
       <basic-button @click="router.back()">BackIcon Back</basic-button>
     </div>
 
     <div class="md:grid md:grid-cols-2 md:gap-10">
       <div
-        class="h-[250px] md:h-full bg-no-repeat bg-contain md:bg-center"
+        class="h-[250px] md:h-full bg-no-repeat bg-contain md:bg-center shadow-sm"
         :style="countryFlag"
       ></div>
       <div class="py-10 md:p-10">
@@ -81,7 +81,16 @@ const countryFlag = computed(() => {
   return {
     'background-image': `url(${countryData.flag})`,
   }
-})
+});
+
+const darkMode = computed(() => {
+  return countriesStore.getDarkMode;
+});
+
+const textColors = computed(() => ({
+  'text-white': darkMode.value,
+  'text-very-dark-blue-lm': !darkMode.value,
+}));
 
 const route = useRoute();
 const router = useRouter();
