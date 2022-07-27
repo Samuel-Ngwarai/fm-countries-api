@@ -9,7 +9,8 @@ export const useCountriesStore = defineStore({
       countries: {},
       ccaToName: {},
       countryDataExists: false,
-      regions: []
+      regions: [],
+      darkMode: true,
     };
   },
   actions: {
@@ -24,11 +25,15 @@ export const useCountriesStore = defineStore({
         this.regions = countries.regions;
       }
     },
+    toggleDarkMode() {
+      this.darkMode = !this.darkMode;
+    }
   },
   getters: {
     getCountries: (state) => state.countries,
     getCcaToName: (state) => state.ccaToName,
     getCountryDataExists: (state) => state.countryDataExists,
     getRegions: (state) => state.regions,
+    getDarkMode: (state) => state.darkMode
   },
 });

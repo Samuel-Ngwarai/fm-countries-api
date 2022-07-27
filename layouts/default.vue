@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-very-dark-blue-dm min-h-screen">
+  <div class="min-h-screen" :class="backgroundColors">
     <the-header></the-header>
     <slot />
   </div>
@@ -10,3 +10,18 @@ html {
   font-family: "Nunito Sans", sans-serif;
 }
 </style>
+
+<script setup lang="ts">
+import { useCountriesStore } from "../stores";
+
+const countriesStore = useCountriesStore();
+
+const darkMode = computed(() => {
+  return countriesStore.getDarkMode;
+});
+
+const backgroundColors = computed(() => ({
+  'bg-very-dark-blue-dm': darkMode.value,
+  'bg-very-light-gray': !darkMode.value,
+}));
+</script>
