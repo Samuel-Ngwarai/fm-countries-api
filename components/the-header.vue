@@ -8,7 +8,7 @@
     </NuxtLink>
 
     <div class="ml-auto">
-      <font-awesome-icon class="pr-2" :class="{ 'text-very-dark-blue-lm': !darkMode }" :icon="moonIcon" />
+      <div class="inline"><font-awesome-icon class="pr-2" :class="{ 'text-very-dark-blue-lm': !darkMode }" :icon="moonIcon" /></div>
       <button @click="countriesStore.toggleDarkMode">Dark Mode</button>
     </div>
   </div>
