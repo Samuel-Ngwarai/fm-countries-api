@@ -1,10 +1,10 @@
 <template>
-  <div :class="cardColors">
-    <NuxtLink :to="`countries/${countryName}`" class="grid grid-rows-countryCard rounded-lg">
+  <div :class="cardColors" class="rounded-lg">
+    <NuxtLink :to="`countries/${countryName}`" class="grid grid-rows-countryCard">
       <div class="bg-no-repeat bg-cover rounded-t-lg" :style="countryFlag"></div>
       <div class="px-4 pb-4 leading-6 text-[14px]">
         <h2 class="text-2xl my-4 font-semibold">{{ countryName }}</h2>
-        <p>Population: {{ population }}</p>
+        <p>Population: {{ population.toLocaleString('en-UK') }}</p>
         <p>Region: {{ region }}</p>
         <p>Capital: {{ capital ? capital[0] : "--" }}</p>
       </div>
