@@ -1,7 +1,9 @@
 <template>
   <div class="px-8 md:px-16" :class="textColors">
     <div class="h-36 flex items-center">
-      <basic-button @click="router.back()">BackIcon Back</basic-button>
+      <basic-button @click="router.back()">
+        <font-awesome-icon class="pr-2" :icon="['fas', 'arrow-left']" />
+        Back</basic-button>
     </div>
 
     <div class="md:grid md:grid-cols-2 md:gap-10">
@@ -14,12 +16,12 @@
         <div class="grid md:grid-cols-2 gap-10 pb-16 text-[16px] leading-6">
           <div>
             <p class="font-thin">
-              <span class="font-semibold ">Native Name:</span>
+              <span class="font-semibold">Native Name:</span>
               {{ countryData.nativeName }}
             </p>
             <p>
               <span class="font-semibold">Population:</span>
-              {{ countryData.population }}
+              {{ countryData.population.toLocaleString('en-UK') }}
             </p>
             <p>
               <span class="font-semibold">Region:</span>
@@ -72,15 +74,14 @@ import { Country } from "../../entities/countries";
 
 const countriesStore = useCountriesStore();
 
-
 if (!countriesStore.getCountryDataExists) {
   await countriesStore.setCountriesData();
 }
 
 const countryFlag = computed(() => {
   return {
-    'background-image': `url(${countryData.flag})`,
-  }
+    "background-image": `url(${countryData.flag})`,
+  };
 });
 
 const darkMode = computed(() => {
@@ -88,8 +89,8 @@ const darkMode = computed(() => {
 });
 
 const textColors = computed(() => ({
-  'text-white': darkMode.value,
-  'text-very-dark-blue-lm': !darkMode.value,
+  "text-white": darkMode.value,
+  "text-very-dark-blue-lm": !darkMode.value,
 }));
 
 const route = useRoute();
@@ -100,6 +101,9 @@ const getCommonName = (code) => {
 };
 
 const countryData: Country =
-  reactive(countriesStore.getCountries[(route.params.countryId as string).toLowerCase()]) || {};
-
+  reactive(
+    countriesStore.getCountries[
+      (route.params.countryId as string).toLowerCase()
+    ]
+  ) || {};
 </script>
