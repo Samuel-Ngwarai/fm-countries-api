@@ -1,42 +1,15 @@
-# Nuxt 3 Minimal Starter
+# FM Countries API
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+Found at [https://fm-countries-api.vercel.app/](https://fm-countries-api.vercel.app/)
 
-## Setup
+<img width="1680" alt="image" src="https://user-images.githubusercontent.com/17403243/206878764-6cecf540-3819-43bf-a4e0-1666593f56e6.png">
 
-Make sure to install the dependencies:
+Project I used as a platform to practice my frontend development skills
 
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+Primary technologies used:
+* Nuxt 3
+  * Vue 3
+* Tailwindcss
+* Typescript
+* Pinia
+* Axios
